@@ -24,6 +24,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: pull scanner image
+        run: |
+          docker login registry.aquasec.com -U ${{ secrets.username }} -P ${{ secrets.password}}
+          docker pull registry.aquasec.com/scanner:2022.4
  
       - name: Run Aqua Security Scanner
         run: |
@@ -32,7 +37,7 @@ jobs:
             -v /var/run/docker.sock:/var/run/docker.sock \
             registry.aquasec.com/scanner:2022.4 scan \
             --registry "Docker Hub" \
-            mongo:latest \
+            nginx:latest \
             --host http://ec2-54-183-33-60.us-west-1.compute.amazonaws.com:8080/ \
             --user ${{ secrets.AQUA_USER }} \
             --password ${{ secrets.AQUA_PASSWORD }} \
