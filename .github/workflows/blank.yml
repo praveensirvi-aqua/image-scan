@@ -27,7 +27,7 @@ jobs:
 
       - name: pull scanner image
         run: |
-          docker login registry.aquasec.com -U ${{ secrets.username }} -P ${{ secrets.password}}
+          docker login registry.aquasec.com -u ${{ secrets.username }} -p ${{ secrets.password}}
           docker pull registry.aquasec.com/scanner:2022.4
  
       - name: Run Aqua Security Scanner
