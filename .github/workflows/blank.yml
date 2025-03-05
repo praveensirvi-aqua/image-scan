@@ -45,7 +45,7 @@ jobs:
           cp /tmp/out.html /tmp/out.json .
  
       - name: Upload Scan Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: scan-results
           path: |
